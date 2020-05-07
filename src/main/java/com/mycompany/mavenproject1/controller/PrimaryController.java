@@ -1,0 +1,18 @@
+package com.mycompany.mavenproject1.controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+
+
+
+public class PrimaryController implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Cargado Controlador Primario");
+    }
+
+  
+    
+}
