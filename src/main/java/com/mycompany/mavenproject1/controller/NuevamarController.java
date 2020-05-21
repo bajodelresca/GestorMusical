@@ -66,10 +66,17 @@ public class NuevamarController implements Initializable{
              int fecha = Integer.parseInt(anoinscripcion);
             c.setAñoañadida(fecha);
             MarchaDAO newComponente = new MarchaDAO(c);
-            newComponente.save();
+            int newId=newComponente.save();
+            
+           
+            
+            c.setID(newId);
+            
+           
+            
 
-            List<Marcha> miscomponentes = MarchaDAO.selectAll();
-            parent.datos.addAll(miscomponentes);
+            
+            parent.datos.add(c);
 
             if (this.nmarStage != null) {
                 this.nmarStage.close();

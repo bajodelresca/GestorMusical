@@ -71,10 +71,13 @@ public class NuevoplaController implements Initializable{
             p.setIDcomponente(idc);
             p.setIDmarcha(idm);
             PlanensayoDAO newPlan = new PlanensayoDAO(p);
-            newPlan.save();
+            int newId=newPlan.save();
+            
+           
+            
+            p.setID(newId);
 
-            List<Planensayo> miscomponentes = PlanensayoDAO.selectAll();
-            parent.data.addAll(miscomponentes);
+            parent.data.add(p);
 
             if (this.nplanStage != null) {
                 this.nplanStage.close();

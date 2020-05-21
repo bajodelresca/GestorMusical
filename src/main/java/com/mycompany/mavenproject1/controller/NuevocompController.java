@@ -68,10 +68,13 @@ public class NuevocompController implements Initializable {
              int fecha = Integer.parseInt(fechainscripcion);
             c.setFechainscripcion(fecha);
             ComponenteDAO newComponente = new ComponenteDAO(c);
-            newComponente.save();
+            int newId=newComponente.save();
+            
+           
+            
+            c.setID(newId);
 
-            List<Componente> miscomponentes = ComponenteDAO.selectAll();
-            parent.data.addAll(miscomponentes);
+            parent.data.add(c);
 
             if (this.ncompStage != null) {
                 this.ncompStage.close();
