@@ -49,20 +49,7 @@ public class PrimaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        List <Planensayo> resultado=PlanensayoDAO.selectAll();
-        System.out.println(resultado);
-        PlanensayoDAO midato=new PlanensayoDAO();
-        midato.setIDcomponente(9);
-        midato.setIDmarcha(1);
-        midato.setNombrecomponen("Raul");
-        midato.setNombremarcha("A ti madre");
-        System.out.println(midato);
-        midato.save();       
-        
-                
-        
- 
-        
+      
     }
 
   
