@@ -19,59 +19,64 @@ import java.util.logging.Logger;
  *
  * @author espin
  */
-public class MarchaDAO extends Marcha {
+public class PlanensayoDAO extends Planensayo {
 
-    final String buscarID = "SELECT * FROM Marcha WHERE ID=" + ID;
-    final String actualizar = "UPDATE Marcha SET Nombre = ?, Autor = ?, Añoañadida = ? WHERE ID = ?";
-    final String insertar = "INSERT INTO Marcha (Nombre,Autor,ID,Añoañadida) VALUES(?,?,NULL,?)";
-    final String borrar = "DELETE FROM Marcha WHERE ID=?";
-    static String seleccionar = "SELECT * FROM Marcha";
+    final String buscarID = "SELECT * FROM planensayo WHERE ID=" + ID;
+    final String actualizar = "UPDATE planensayo SET Nombrecomponen = ?, Nombremarcha = ?, IDcomponente = ?, IDmarcha = ? WHERE ID = ?";
+    final String insertar = "INSERT INTO planensayo (Nombrecomponen,Nombremarcha,ID,IDcomponente,IDmarcha) VALUES(?,?,NULL,?,?)";
+    final String borrar = "DELETE FROM planensayo WHERE ID=?";
+    static String seleccionar = "SELECT * FROM planensayo";
 
     private boolean persist;
 
-    public MarchaDAO() {
+    public PlanensayoDAO() {
         super();
         persist = false;
     }
 
-    public MarchaDAO(String Nombre, String Autor, int ID, int añoañadida) {
-        super(Nombre, Autor, ID, añoañadida);
+    public PlanensayoDAO(String Nombrecomponen, String Nombremarcha, int ID, int IDcomponente, int IDmarcha) {
+        super(Nombrecomponen, Nombremarcha, ID, IDcomponente, IDmarcha);
         persist = false;
     }
 
-    public MarchaDAO(String Nombre, String Autor, int añoañadida) {
-        super(Nombre, Autor, -1, añoañadida);
+    public PlanensayoDAO(String Nombrecomponen, String Nombremarcha,int IDcomponente, int IDmarcha) {
+        super(Nombrecomponen, Nombremarcha,-1,IDcomponente,IDmarcha);
         persist = false;
     }
 
-    public MarchaDAO(Marcha i) {
-        Nombre = i.Nombre;
-        Autor = i.Autor;
+    public PlanensayoDAO(Planensayo i) {
+        Nombrecomponen = i.Nombrecomponen;
+        Nombremarcha = i.Nombremarcha;
         ID = i.ID;
-        añoañadida = i.añoañadida;
+        IDcomponente = i.IDcomponente;
+        IDmarcha = i.IDmarcha;
+        
     }
-
-    public MarchaDAO(int ID) {
+public PlanensayoDAO(int ID){
         super();
 
         try {
-            java.sql.Connection conn = ConnectionUtil.getConnection();
-            PreparedStatement ps = conn.prepareStatement(buscarID);
+            java.sql.Connection conn = ConnectionUtil.getConnection();            
+            PreparedStatement ps=conn.prepareStatement(buscarID);
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
                 if (rs.next()) {
+                    this.Nombrecomponen = rs.getString("Nombrecomponen");
+                    this.Nombremarcha = rs.getString("Nombremarcha");
                     this.ID = ID;
-                    this.Nombre = rs.getString("Nombre");
-                    this.Autor = rs.getString("Autor");
-                    this.añoañadida = rs.getInt("Añoañadida");
+                    this.IDcomponente = rs.getInt("IDcomponente");
+                    this.IDmarcha = rs.getInt("IDmarcha");
+                    
                 }
             }
         } catch (SQLException ex) {
             System.out.println(ex);
-            Logger.getLogger(MarchaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlanensayoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
+    
+                  
 
     public void persist() {
         persist = true;
@@ -80,30 +85,39 @@ public class MarchaDAO extends Marcha {
     public void detatch() {
         persist = false;
     }
-
     @Override
-    public void setNombre(String Nombre) {
-        super.setNombre(Nombre);
+    public void setNombrecomponen(String Nombrecomponen) {
+        super.setNombrecomponen(Nombrecomponen);
         if (persist) {
             save();
         }
     }
 
     @Override
-    public void setAutor(String Autor) {
-        super.setAutor(Autor);
+    public void setNombremarcha(String Nombremarcha) {
+        super.setNombremarcha(Nombremarcha);
         if (persist) {
             save();
         }
     }
 
     @Override
-    public void setAñoañadida(int añoañadida) {
-        super.setAñoañadida(añoañadida);
+    public void setIDcomponente(int IDcomponente) {
+        super.setIDcomponente(IDcomponente);
         if (persist) {
             save();
         }
     }
+
+    @Override
+    public void setIDmarcha(int IDmarcha) {
+        super.setIDmarcha(IDmarcha);
+        if (persist) {
+            save();
+        }
+    }
+
+    
 
     public int save() {
         int result = -1;
@@ -113,17 +127,20 @@ public class MarchaDAO extends Marcha {
             if (this.ID > 0) {
 
                 PreparedStatement ps = csql.prepareStatement(actualizar);
-                ps.setString(1, Nombre);
-                ps.setString(2, Autor);
-                ps.setInt(3, añoañadida);
-                ps.setInt(4, ID);
+                ps.setString(1, Nombrecomponen);
+                ps.setString(2, Nombremarcha);
+                ps.setInt(3, IDcomponente);
+                ps.setInt(4, IDmarcha);
+                ps.setInt(5, ID);
                 result = ps.executeUpdate();
             } else {
 
                 PreparedStatement ps = csql.prepareStatement(insertar, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, Nombre);
-                ps.setString(2, Autor);
-                ps.setInt(3, añoañadida);
+                ps.setString(1, Nombrecomponen);
+                ps.setString(2, Nombremarcha);                
+                ps.setInt(3, IDcomponente);
+                ps.setInt(4, IDmarcha);
+                
                 result = ps.executeUpdate();
                 try ( ResultSet generatedKeys = ps.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -134,18 +151,18 @@ public class MarchaDAO extends Marcha {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MarchaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlanensayoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return result;
     }
 
-    public static List<Marcha> selectAll() {
+    public static List<Planensayo> selectAll() {
         return selectAll("");
     }
 
-    public static List<Marcha> selectAll(String pattern) {
-        List<Marcha> result = new ArrayList<>();
+    public static List<Planensayo> selectAll(String pattern) {
+        List<Planensayo> result = new ArrayList<>();
 
         try {
             java.sql.Connection conn = ConnectionUtil.getConnection();
@@ -162,41 +179,43 @@ public class MarchaDAO extends Marcha {
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    Marcha n = new Marcha();
-                    n.setNombre(rs.getString("Nombre"));
-                    n.setAutor(rs.getString("Autor"));
+                    Planensayo n = new Planensayo();
+
                     n.setID(rs.getInt("ID"));
-                    n.setAñoañadida(rs.getInt("Añoañadida"));
+                    n.setIDcomponente(rs.getInt("IDcomponente"));
+                    n.setIDmarcha(rs.getInt("IDmarcha"));
+                    n.setNombrecomponen(rs.getString("Nombrecomponen"));
+                    n.setNombremarcha(rs.getString("Nombremarcha"));
                     result.add(n);
                 }
             }
         } catch (SQLException ex) {
             System.out.println(ex);
-            Logger.getLogger(MarchaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlanensayoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return result;
     }
 
-     public void remove (Marcha marcha) {        
+     public void remove (Planensayo planensayo) {        
        PreparedStatement ps=null;
         try{
             java.sql.Connection conn = ConnectionUtil.getConnection();
             ps=conn.prepareStatement(borrar);
-            ps.setInt(1,marcha.getID());
+            ps.setInt(1,planensayo.getID());
            
             if(ps.executeUpdate()==0) {
                 throw new SQLException("No se Ha insertado correctamente");
                 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MarchaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlanensayoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             if(ps !=null){
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(MarchaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PlanensayoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

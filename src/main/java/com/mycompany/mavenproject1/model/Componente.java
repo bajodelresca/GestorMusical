@@ -5,7 +5,7 @@
  */
 package com.mycompany.mavenproject1.model;
 
-import java.time.LocalDate;
+
 
 /**
  *
@@ -15,18 +15,18 @@ public class Componente {
     protected String Nombre;
     protected String Instrumento;
     protected int ID;
-    protected LocalDate inscripcion;
+    protected int fechainscripcion;
     
 
-    public Componente(String Nombre, String Instrumento, int ID, LocalDate inscripcion) {
+    public Componente(String Nombre, String Instrumento, int ID,int fechainscripcion) {
         this.Nombre = Nombre;
         this.Instrumento = Instrumento;
         this.ID = ID;
-        this.inscripcion = inscripcion;
+        this.fechainscripcion = fechainscripcion;
     }
 
     public Componente() {
-       this ("","",-1,LocalDate.now());
+       this ("","",-1,-1);
     }
 
     public String getNombre() {
@@ -53,22 +53,22 @@ public class Componente {
         this.ID = ID;
     }
 
-    public LocalDate getInscripcion() {
-        return inscripcion;
+    public int getFechainscripcion() {
+        return fechainscripcion;
     }
 
-    public void setInscripcion(LocalDate inscripcion) {
-        this.inscripcion = inscripcion;
+    public void setFechainscripcion(int fechainscripcion) {
+        this.fechainscripcion = fechainscripcion;
     }
 
     @Override
     public String toString() {
-        return "Componente{" + "Nombre=" + Nombre + ", Instrumento=" + Instrumento + ", ID=" + ID + ", inscripcion=" + inscripcion + '}';
+        return "Componente{" + "Nombre=" + Nombre + ", Instrumento=" + Instrumento + ", ID=" + ID + ", fechainscripcion=" + fechainscripcion + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         return hash;
     }
 
@@ -89,7 +89,8 @@ public class Componente {
         }
         return true;
     }
-    
+
+   
     
     
     

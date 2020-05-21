@@ -5,11 +5,20 @@
  */
 package com.mycompany.mavenproject1.model;
 
-/**
- *
- * @author espin
- */
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "CONNECTION")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Connection {
+
     private String host;
     private String db;
     private String user;
@@ -23,7 +32,7 @@ public class Connection {
     }
 
     public Connection() {
-        this("","","","");
+        this("", "", "", "");
     }
 
     public String getHost() {
@@ -64,9 +73,25 @@ public class Connection {
     }
 
     public void loadDataXML() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String file = "config.xml";
+        File f = new File(file);
+        if (f.canRead()) {
+            JAXBContext context;
+            try {
+                context = JAXBContext.newInstance(Connection.class);
+
+                Unmarshaller um = context.createUnmarshaller();
+                Connection miconection = (Connection) um.unmarshal(f);
+                this.host = miconection.host;
+                this.db = miconection.db;
+                this.user = miconection.user;
+                this.password = miconection.password;
+            } catch (JAXBException ex) {
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            System.out.println("Archivo no valido");
+        }
     }
-    
-    
-    
+
 }

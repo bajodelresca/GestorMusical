@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -8,41 +7,36 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.19597989949748743" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.19597989949748743" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.controller.RepertorioController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #3f3f9f;">
          <children>
-            <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="83.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="137.0" layoutY="12.0" onMouseClicked="#atras" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/fle.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="202.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="273.0" layoutY="12.0" onMouseClicked="#openNuevom" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/agre.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="338.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="405.0" layoutY="12.0" onMouseClicked="#deletemarcha" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/borr.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="452.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/conf.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
-            <TableView layoutX="69.0" layoutY="35.0" prefHeight="317.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="table" layoutX="69.0" layoutY="35.0" prefHeight="317.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn prefWidth="280.0" text="Nombre" />
-                  <TableColumn minWidth="2.0" prefWidth="91.0" text="Autor" />
-                  <TableColumn prefWidth="216.0" text="Fecha de montaje" />
+                <TableColumn fx:id="IDcolumna" prefWidth="37.0" text="ID" />
+                  <TableColumn fx:id="Nombrecolumna" minWidth="2.0" prefWidth="215.0" text="Nombre" />
+                  <TableColumn fx:id="Autorcolumna" prefWidth="232.0" text="Autor" />
+                  <TableColumn fx:id="Anocolumna" prefWidth="113.0" text="Año de montaje" />
               </columns>
             </TableView>
-            <ScrollBar layoutX="586.0" orientation="VERTICAL" prefHeight="317.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="586.0" AnchorPane.topAnchor="0.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>

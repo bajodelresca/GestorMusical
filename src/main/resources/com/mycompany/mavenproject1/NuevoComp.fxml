@@ -7,25 +7,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3f3f9f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3f3f9f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.controller.NuevocompController">
    <children>
-      <ImageView fitHeight="71.0" fitWidth="35.0" layoutX="24.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="71.0" fitWidth="35.0" layoutX="24.0" layoutY="27.0" onMouseClicked="#atras" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/fle.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="551.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="36.0" fitWidth="23.0" layoutX="551.0" layoutY="357.0" onMouseClicked="#add" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/guardar.png" />
          </image>
       </ImageView>
-      <TextField layoutX="141.0" layoutY="110.0" />
-      <TextField layoutX="141.0" layoutY="154.0" />
-      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="158.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/fot.png" />
-         </image>
-      </ImageView>
+      <TextField fx:id="Nombre" layoutX="141.0" layoutY="110.0" />
+      <TextField fx:id="Instrumento" layoutX="141.0" layoutY="154.0" />
       <Text layoutX="76.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="64.845703125">
          <font>
             <Font size="16.0" />
@@ -39,6 +34,12 @@
       <Text layoutX="164.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo componente">
          <font>
             <Font size="31.0" />
+         </font>
+      </Text>
+      <TextField fx:id="fechainscripcion" layoutX="141.0" layoutY="200.0" />
+      <Text layoutX="24.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año inscripción" wrappingWidth="109.845703125">
+         <font>
+            <Font size="16.0" />
          </font>
       </Text>
    </children>

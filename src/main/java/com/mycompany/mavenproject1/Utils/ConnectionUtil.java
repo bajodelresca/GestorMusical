@@ -8,8 +8,7 @@ import java.util.logging.Logger;
 
 
 public class ConnectionUtil {
-    
-    private static java.sql.Connection _conn=null;
+   private static java.sql.Connection _conn=null;
     
     public static java.sql.Connection connect(Connection c) throws ClassNotFoundException, SQLException{
         java.sql.Connection conn=null;
@@ -38,7 +37,7 @@ public class ConnectionUtil {
             }
         }
         return _conn;
-    }
+    }   
     
     
 }

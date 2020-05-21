@@ -15,17 +15,17 @@ public class Marcha {
     protected String Nombre;
     protected String Autor;
     protected int ID;
-    protected LocalDate añadida;
+    protected int añoañadida;
 
-    public Marcha(String Nombre, String Autor, int ID, LocalDate añadida) {
+    public Marcha(String Nombre, String Autor, int ID, int añoañadida) {
         this.Nombre = Nombre;
         this.Autor = Autor;
         this.ID = ID;
-        this.añadida = añadida;
+        this.añoañadida = añoañadida;
     }
 
     public Marcha() {
-        this ("","",-1,LocalDate.now());
+        this ("","",-1,-1);
     }
 
     public String getNombre() {
@@ -52,22 +52,23 @@ public class Marcha {
         this.ID = ID;
     }
 
-    public LocalDate getAñadida() {
-        return añadida;
+    public int getAñoañadida() {
+        return añoañadida;
     }
 
-    public void setAñadida(LocalDate añadida) {
-        this.añadida = añadida;
+    public void setAñoañadida(int añoañadida) {
+        this.añoañadida = añoañadida;
     }
 
     @Override
     public String toString() {
-        return "Marcha{" + "Nombre=" + Nombre + ", Autor=" + Autor + ", ID=" + ID + ", a\u00f1adida=" + añadida + '}';
+        return "Marcha{" + "Nombre=" + Nombre + ", Autor=" + Autor + ", ID=" + ID + ", a\u00f1oa\u00f1adida=" + añoañadida + '}';
     }
+    
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 5;
         return hash;
     }
 
@@ -88,6 +89,8 @@ public class Marcha {
         }
         return true;
     }
+
+  
     
     
     
